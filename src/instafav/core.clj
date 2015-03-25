@@ -4,7 +4,9 @@
     instagram.oauth
     instagram.callbacks
     instagram.callbacks.handlers
-    instagram.api.endpoint)
+    instagram.api.endpoint
+    [ring.adapter.jetty :as jetty]
+    [clojure.data.json :as json])
   (:import
     (instagram.callbacks.protocols SyncSingleCallback)))
 
@@ -27,8 +29,10 @@
 
 ; (let [access-token (-> (get-access-token *creds* ))])
 
-(defn -main
-  [& args]
-  (println *creds*)
-  (println *auth-url*)
-  (println args))
+(defn handler [request]
+  { :status 200
+    :headers {"Content-Type" "application/json" }
+    :body (json/write-str *creds*) })
+
+(defn -main [& args]
+  (jetty/run-jetty handler { :port 8080 }))
