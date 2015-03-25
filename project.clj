@@ -5,7 +5,9 @@
                  [environ "1.0.0"]
                  [ring/ring-core "1.3.2"]
                  [ring/ring-jetty-adapter "1.3.2"]
-                 [compojure "1.3.2"]]
+                 [ring/ring-defaults "0.1.4"]
+                 [compojure "1.3.2"]
+                 [hiccup "1.0.5"]]
   :main ^:skip-aot instafav.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})

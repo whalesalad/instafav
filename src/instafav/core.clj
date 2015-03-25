@@ -5,4 +5,4 @@
     [instafav.web :as web]))
 
 (defn -main [& args]
-  (ring/run-jetty web/routes { :port 8080 }))
+  (ring/run-jetty web/site { :port 8080 }))
