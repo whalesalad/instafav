@@ -12,8 +12,12 @@
 (def bootstrap { :css "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
                  :js "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" })
 
+(defn wrap-title [title]
+  (str title " — InstaFav"))
+
 (defn base-page [title body]
-  (let [body (hiccup/html body)]
+  (let [title (wrap-title title)]
+       [body (hiccup/html body)]
     (page/html5
       [:head
         [:title title]
@@ -24,7 +28,7 @@
     )))
 
 (defn login []
-  (base-page "Login – InstaFav"
+  (base-page "Login"
     [:div {:class "container"}
       [:h1 "InstaFav"]
       [:p "Get updates when your favorite Instagram friends post."]
