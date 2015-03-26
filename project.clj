@@ -8,6 +8,8 @@
                  [ring/ring-defaults "0.1.4"]
                  [compojure "1.3.2"]
                  [hiccup "1.0.5"]]
+  :plugins [[lein-ring "0.9.3"]]
+  :ring {:handler instafav.web/site}
   :main ^:skip-aot instafav.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
