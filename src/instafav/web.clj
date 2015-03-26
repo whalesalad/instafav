@@ -39,8 +39,8 @@
 ; Will get a "code" get parameter which contains the
 ; token for the user who just authenticated.
 (defn receive-callback [params]
-  (let [access-token (params :code)]
-    (json/write-str access-token)))
+  (let [code (params :code)]
+    (json/write-str (insta/get-access-token code))))
 
 (defroutes routes
   (GET "/" [] (login))

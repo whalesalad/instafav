@@ -25,4 +25,5 @@
 (def auth-url (instagram.api.endpoint/authorization-url credentials "basic"))
 
 (defn get-access-token [code]
-  (-> (instagram.api.endpoint/get-access-token credentials code) :body :access_token))
+  (instagram.api.endpoint/get-access-token credentials code))
+  ; (-> (instagram.api.endpoint/get-access-token credentials code) :body :access_token))
