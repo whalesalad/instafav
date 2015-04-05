@@ -1,5 +1,23 @@
 # Instafav
 
+To run everything:
+
+`PORT=8080 lein ring server`
+
+### Models
+
+##### User
+
+- id
+- username
+- full_name
+- bio
+- profile_picture
+- access_token
+
+#####
+
+
 ### Features
 
 - Run a webserver to allow a user to login with oauth

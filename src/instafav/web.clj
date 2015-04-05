@@ -1,5 +1,4 @@
 (ns instafav.web
-  (:gen-class)
   (:require
     [compojure.core :refer [defroutes GET]]
     [compojure.handler :refer [api]]
@@ -42,8 +41,22 @@
   (let [code (params :code)]
     (json/write-str (insta/get-access-token code))))
 
+(defn test-cookies [params session]
+  ; { :session params }
+  ; (json/write-str {:params params :session session})
+  ; )
+  {:headers {"Content-Type" "text/html; charset=utf-8"}
+   :session (merge session params)
+   :body (base-page "Cookies"
+    [:div {:class "container"}
+      [:h1 "Cookies"]
+      [:pre (json/write-str {:params params :session session})]
+    ])
+  })
+
 (defroutes routes
   (GET "/" [] (login))
-  (GET "/callback" {params :params} (receive-callback params)))
+  (GET "/callback" {params :params} (receive-callback params))
+  (GET "/cookies" {params :params session :session} (test-cookies params session)))
 
-(def site (wrap-defaults routes api-defaults))
+(def app (wrap-defaults routes site-defaults))

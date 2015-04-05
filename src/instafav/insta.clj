@@ -1,5 +1,4 @@
 (ns instafav.insta
-  (:gen-class)
   (:require
     instagram.oauth
     instagram.callbacks
@@ -26,4 +25,9 @@
 
 (defn get-access-token [code]
   (instagram.api.endpoint/get-access-token credentials code))
-  ; (-> (instagram.api.endpoint/get-access-token credentials code) :body :access_token))
+
+(def access-token
+  (env :instagram-token))
+
+(defn follows [token]
+  (instagram.api.endpoint/get-followings :access-token token))
